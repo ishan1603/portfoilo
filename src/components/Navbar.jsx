@@ -2,11 +2,11 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { useWindowScroll } from "react-use";
 import { useEffect, useRef, useState } from "react";
-import { TiLocationArrow } from "react-icons/ti";
+import { TiDownload, TiLocationArrow } from "react-icons/ti";
 
 import Button from "./Button";
 
-const navItems = ["Nexus", "Vault", "Prologue", "About", "Contact"];
+const navItems = ["Skills", "Projects", "About", "Contact"];
 
 const NavBar = () => {
   // State for toggling audio and visual indicator
@@ -75,8 +75,8 @@ const NavBar = () => {
 
             <Button
               id="product-button"
-              title="Products"
-              rightIcon={<TiLocationArrow />}
+              title="Resume"
+              rightIcon={<TiDownload />}
               containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
             />
           </div>
