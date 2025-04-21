@@ -38,7 +38,13 @@ export const BentoTilt = ({ children, className = "" }) => {
   );
 };
 
-export const BentoCard = ({ src, title, description, isComingSoon }) => {
+export const BentoCard = ({
+  src,
+  title,
+  description,
+  isComingSoon,
+  textColor = "text-blue-50",
+}) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [hoverOpacity, setHoverOpacity] = useState(0);
   const hoverButtonRef = useRef(null);
@@ -65,7 +71,9 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
         autoPlay
         className="absolute left-0 top-0 size-full object-cover object-center"
       />
-      <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
+      <div
+        className={`relative z-10 flex size-full flex-col justify-between p-5 ${textColor}`}
+      >
         <div>
           <h1 className="bento-title special-font">{title}</h1>
           {description && (
@@ -118,6 +126,7 @@ const Features = () => (
           }
           description="-"
           isComingSoon
+          textColor="text-black"
         />
       </BentoTilt>
 
@@ -143,7 +152,7 @@ const Features = () => (
                 Twe<b>e</b>Vee
               </>
             }
-            description="TweeVee is a video-sharing platform that blends YouTube’s depth with Twitter’s reach, letting creators post full-length videos while optimizing them for social sharing."
+            description="TweeVee is a video-sharing platform that blends YouTube's depth with Twitter's reach, letting creators post full-length videos while optimizing them for social sharing."
             isComingSoon
           />
         </BentoTilt>
