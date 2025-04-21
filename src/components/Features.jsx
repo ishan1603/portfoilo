@@ -75,7 +75,7 @@ export const BentoCard = ({
         className={`relative z-10 flex size-full flex-col justify-between p-5 ${textColor}`}
       >
         <div>
-          <h1 className="bento-title special-font">{title}</h1>
+          <h1 className="bento-title font-pixelify-sans">{title}</h1>
           {description && (
             <p className="mt-3 max-w-64 text-xs md:text-base">{description}</p>
           )}
@@ -98,7 +98,13 @@ export const BentoCard = ({
               }}
             />
             <TiLocationArrow className="relative z-20" />
-            <p className="relative z-20">coming soon</p>
+            <a
+              className="relative z-20"
+              href="https://github.com/ishan1603/TweeVee"
+              target="_blank"
+            >
+              View
+            </a>
           </div>
         )}
       </div>
@@ -110,7 +116,9 @@ const Features = () => (
   <section className="bg-black pb-52">
     <div className="container mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
-        <p className="font-circular-web text-lg text-blue-50">Curated Work</p>
+        <p className="font-circular-web text-lg text-blue-50" id="projects">
+          Curated Work
+        </p>
         <p className="max-w-md font-circular-web text-lg text-blue-50 opacity-50">
           Where vision meets execution <br /> Designed with intent.
         </p>
@@ -172,7 +180,7 @@ const Features = () => (
 
         <BentoTilt className="bento-tilt_2">
           <div className="flex size-full flex-col justify-between bg-violet-300 p-5">
-            <h1 className="bento-title special-font max-w-64 text-black">
+            <h1 className="bento-title font-pixelify-sans max-w-64 text-black">
               M<b>o</b>re co<b>m</b>ing s<b>o</b>on.
             </h1>
 
