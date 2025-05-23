@@ -77,7 +77,7 @@ const NavBar = () => {
               id="product-button"
               title="Resume"
               rightIcon={<TiDownload />}
-              containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
+              containerClass="bg-blue-400 md:flex hidden items-center justify-center gap-1"
             />
           </div>
 
@@ -88,7 +88,7 @@ const NavBar = () => {
                 <a
                   key={index}
                   href={`#${item.toLowerCase()}`}
-                  className="nav-hover-btn"
+                  className="nav-hover-btn "
                 >
                   {item}
                 </a>

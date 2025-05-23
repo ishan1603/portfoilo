@@ -125,7 +125,7 @@ const Hero = () => {
               ish<b>a</b>n
             </h1>
 
-            <p className="mb-5 max-w-64 font-robert-regular text-blue-100">
+            <p className="mb-5 max-w-64 font-robert-regular font-bold text-blue-100">
               Fullstack Web Developer
               <br />
               <span className="inline-flex items-center">
@@ -137,7 +137,7 @@ const Hero = () => {
               id="work-together"
               title="Work Together"
               leftIcon={<TiLocationArrow />}
-              containerClass="bg-blue-300 flex-center gap-1"
+              containerClass="bg-blue-400 flex-center gap-1"
             />
           </div>
         </div>

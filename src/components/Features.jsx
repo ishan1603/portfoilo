@@ -147,7 +147,7 @@ const Features = () => (
                 Ac<b>a</b>dBond
               </>
             }
-            description="A dynamic space where academic expertise meets student research needs—streamlining paper guidance and knowledge exchange."
+            description="A platform where professors can"
             isComingSoon
           />
         </BentoTilt>
