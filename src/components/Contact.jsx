@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import AnimatedTitle from "./AnimatedTitle";
 import Button from "./Button";
+import EmailDialog from "./EmailDialog";
 
 const Contact = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <div id="contact" className="my-20 min-h-96 w-screen px-10">
       <div className="relative rounded-lg overflow-hidden py-24 text-blue-50">
@@ -25,10 +29,11 @@ const Contact = () => {
           <Button
             title="contact me"
             containerClass="mt-10 cursor-pointer"
-            href="mailto:ishanm1603@gmail.com"
+            onClick={() => setIsDialogOpen(true)}
           />
         </div>
       </div>
+      <EmailDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </div>
   );
 };

@@ -6,12 +6,14 @@ import { TiLocationArrow, TiLocation } from "react-icons/ti";
 import { useEffect, useRef, useState } from "react";
 
 import Button from "./Button";
+import EmailDialog from "./EmailDialog";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [hasClicked, setHasClicked] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const [loading, setLoading] = useState(true);
   const [loadedVideos, setLoadedVideos] = useState(0);
@@ -138,6 +140,7 @@ const Hero = () => {
               title="Work Together"
               leftIcon={<TiLocationArrow />}
               containerClass="bg-blue-400 flex-center gap-1"
+              onClick={() => setIsDialogOpen(true)}
             />
           </div>
         </div>
@@ -146,6 +149,7 @@ const Hero = () => {
       <h1 className="hero-heading font-pixelify-sans absolute bottom-5 right-5 text-black">
         MIS<b>R</b>A
       </h1>
+      <EmailDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </div>
   );
 };

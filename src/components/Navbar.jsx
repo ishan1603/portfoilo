@@ -6,7 +6,7 @@ import { TiDownload, TiLocationArrow } from "react-icons/ti";
 
 import Button from "./Button";
 
-const navItems = ["Skills", "Projects", "About", "Contact"];
+const navItems = ["About", "Projects", "Skills", "Contact"];
 
 const NavBar = () => {
   // State for toggling audio and visual indicator
@@ -20,6 +20,18 @@ const NavBar = () => {
   const { y: currentScrollY } = useWindowScroll();
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Smooth scroll handler
+  const handleSmoothScroll = (e, targetId) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId.toLowerCase());
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
   // Toggle audio and visual indicator
   const toggleAudioIndicator = () => {
@@ -88,7 +100,8 @@ const NavBar = () => {
                 <a
                   key={index}
                   href={`#${item.toLowerCase()}`}
-                  className="nav-hover-btn "
+                  className="nav-hover-btn"
+                  onClick={(e) => handleSmoothScroll(e, item)}
                 >
                   {item}
                 </a>

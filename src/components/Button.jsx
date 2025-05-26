@@ -1,7 +1,12 @@
 import clsx from "clsx";
 
-const Button = ({ id, title, rightIcon, leftIcon, containerClass, href }) => {
+const Button = ({ id, title, rightIcon, leftIcon, containerClass, href, onClick }) => {
   const handleClick = () => {
+    if (onClick) {
+      onClick();
+      return;
+    }
+
     if (!href) return;
 
     if (href.startsWith("mailto:")) {
