@@ -1,5 +1,22 @@
 import { useState, useRef } from "react";
 import { TiLocationArrow } from "react-icons/ti";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+
+const techLinks = {
+  "Next.js": "https://nextjs.org",
+  Supabase: "https://supabase.com",
+  Stripe: "https://stripe.com",
+  TypeScript: "https://www.typescriptlang.org",
+  Tailwind: "https://tailwindcss.com",
+  React: "https://react.dev",
+  "Node.js": "https://nodejs.org",
+  MongoDB: "https://www.mongodb.com",
+  Express: "https://expressjs.com",
+  "Socket.io": "https://socket.io",
+  Prisma: "https://www.prisma.io",
+  PostgreSQL: "https://www.postgresql.org",
+  "AWS S3": "https://aws.amazon.com/s3",
+};
 
 export const BentoTilt = ({ children, className = "" }) => {
   const [transformStyle, setTransformStyle] = useState("");
@@ -42,26 +59,11 @@ export const BentoCard = ({
   src,
   title,
   description,
-  isComingSoon,
   textColor = "text-blue-50",
+  websiteLink,
+  sourceCodeLink,
+  techStack = [],
 }) => {
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [hoverOpacity, setHoverOpacity] = useState(0);
-  const hoverButtonRef = useRef(null);
-
-  const handleMouseMove = (event) => {
-    if (!hoverButtonRef.current) return;
-    const rect = hoverButtonRef.current.getBoundingClientRect();
-
-    setCursorPosition({
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
-    });
-  };
-
-  const handleMouseEnter = () => setHoverOpacity(1);
-  const handleMouseLeave = () => setHoverOpacity(0);
-
   return (
     <div className="relative size-full">
       <video
@@ -79,34 +81,47 @@ export const BentoCard = ({
           {description && (
             <p className="mt-3 max-w-64 text-xs md:text-base">{description}</p>
           )}
+          {techStack.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {techStack.map((tech, index) => (
+                <a
+                  key={index}
+                  href={techLinks[tech]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer rounded-full bg-black/20 px-3 py-1 text-xs text-white transition-all duration-300 hover:bg-black/40 hover:scale-110"
+                >
+                  {tech}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
-        {isComingSoon && (
-          <div
-            ref={hoverButtonRef}
-            onMouseMove={handleMouseMove}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className="border-hsla relative flex w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-black px-5 py-2 text-xs uppercase text-white/20"
-          >
-            {/* Radial gradient hover effect */}
-            <div
-              className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
-              style={{
-                opacity: hoverOpacity,
-                background: `radial-gradient(100px circle at ${cursorPosition.x}px ${cursorPosition.y}px, #656fe288, #00000026)`,
-              }}
-            />
-            <TiLocationArrow className="relative z-20" />
+        <div className="flex gap-3">
+          {websiteLink && (
             <a
-              className="relative z-20"
-              href="https://github.com/ishan1603/TweeVee"
+              href={websiteLink}
               target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 rounded-full bg-black/20 px-4 py-2 text-sm text-white transition-all hover:bg-black/40"
             >
-              View
+              <FaExternalLinkAlt />
+              <span>Website</span>
             </a>
-          </div>
-        )}
+          )}
+          {sourceCodeLink && (
+            <a
+              href={sourceCodeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 rounded-full bg-black/20 px-4 py-2 text-sm text-white transition-all hover:bg-black/40"
+            >
+              <FaGithub />
+              <span>Source</span>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -129,12 +144,20 @@ const Features = () => (
           src="videos/feature-1.mp4"
           title={
             <>
-              w<b>i</b>p
+              Neur<b>a</b>Nest
             </>
           }
-          description="-"
-          isComingSoon
+          description="An LMS SaaS platform built from scratch using Next.js, Supabase, and Stripe. It features secure user authentication, flexible subscription plans, and seamless payment integration."
           textColor="text-black"
+          websiteLink="https://neura-nest.vercel.app"
+          sourceCodeLink="https://github.com/ishan1603/NeuraNest"
+          techStack={[
+            "Next.js",
+            "Supabase",
+            "Stripe",
+            "TypeScript",
+            "Tailwind",
+          ]}
         />
       </BentoTilt>
 
@@ -148,7 +171,9 @@ const Features = () => (
               </>
             }
             description="A platform where professors can"
-            isComingSoon
+            websiteLink="https://acadbond.com"
+            sourceCodeLink="https://github.com/ishan1603/AcadBond"
+            techStack={["React", "Node.js", "MongoDB", "Express", "Socket.io"]}
           />
         </BentoTilt>
 
@@ -161,7 +186,15 @@ const Features = () => (
               </>
             }
             description="TweeVee is a video-sharing platform that blends YouTube's depth with Twitter's reach, letting creators post full-length videos while optimizing them for social sharing."
-            isComingSoon
+            websiteLink="https://tweevee.vercel.app"
+            sourceCodeLink="https://github.com/ishan1603/TweeVee"
+            techStack={[
+              "Next.js",
+              "Prisma",
+              "PostgreSQL",
+              "AWS S3",
+              "Tailwind",
+            ]}
           />
         </BentoTilt>
 
@@ -174,7 +207,6 @@ const Features = () => (
               </>
             }
             description=""
-            isComingSoon
           />
         </BentoTilt>
 
