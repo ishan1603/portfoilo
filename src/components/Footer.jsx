@@ -3,10 +3,26 @@ import { SiLeetcode } from "react-icons/si";
 import { TiDocumentText } from "react-icons/ti";
 
 const socialLinks = [
-  { href: "#", icon: <FaLinkedin className="text-xl" />, label: "LinkedIn" },
-  { href: "#", icon: <FaGithub className="text-xl" />, label: "GitHub" },
-  { href: "#", icon: <SiLeetcode className="text-xl" />, label: "LeetCode" },
-  { href: "#", icon: <TiDocumentText className="text-xl" />, label: "Resume" },
+  {
+    href: "https://www.linkedin.com/in/ishanm1603",
+    icon: <FaLinkedin className="text-xl" />,
+    label: "LinkedIn",
+  },
+  {
+    href: "https://github.com/ishan1603",
+    icon: <FaGithub className="text-xl" />,
+    label: "GitHub",
+  },
+  {
+    href: "https://leetcode.com/u/IshanM1603/",
+    icon: <SiLeetcode className="text-xl" />,
+    label: "LeetCode",
+  },
+  {
+    href: "#",
+    icon: <TiDocumentText className="text-xl" />,
+    label: "Resume",
+  },
 ];
 
 const Footer = () => {
