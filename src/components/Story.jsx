@@ -65,7 +65,7 @@ const Story = () => {
             </p>
             <AnimatedTitle
               title="Technologies I <b>W</b>ork <br /> <b>W</b>ith"
-              containerClass="mt-5 font-pixelify-sans !md:text-[12rem] w-full !text-8xl !font-black !leading-[.9] "
+              containerClass="mt-5 font-pixelify-sans !text-5xl sm:!text-7xl md:!text-[12rem] w-full !font-black !leading-[.9]"
             />
             <p className="mt-3 max-w-md mx-auto text-center font-circular-web text-lg text-blue-50 opacity-50">
               A comprehensive toolkit for building modern web applications.

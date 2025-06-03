@@ -7,7 +7,7 @@ const Contact = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <div id="contact" className="my-20 min-h-96 w-screen px-10">
+    <div id="contact" className="my-20 min-h-96 w-screen px-5 sm:px-10">
       <div className="relative rounded-lg overflow-hidden py-24 text-blue-50">
         <video
           src="videos/contact.mp4"
@@ -23,7 +23,7 @@ const Contact = () => {
 
           <AnimatedTitle
             title="let&#39;s b<b>u</b>ild the <br /> future <br /> t<b>o</b>gether."
-            className="font-pixelify-sans !md:text-[6.2rem] w-full !text-5xl !font-black !leading-[.9]"
+            containerClass="font-pixelify-sans !text-4xl sm:!text-5xl md:!text-[6.2rem] w-full !font-black !leading-[.9]"
           />
 
           <Button
