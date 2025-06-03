@@ -68,7 +68,7 @@ const NavBar = () => {
               id="product-button"
               title="Resume"
               rightIcon={<TiDownload />}
-              containerClass="bg-blue-400 md:flex hidden items-center justify-center gap-1"
+              containerClass="bg-blue-400 flex items-center justify-center gap-1"
               href="/resume.pdf"
             />
           </div>

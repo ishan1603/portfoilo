@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import AnimatedTitle from "./AnimatedTitle";
 
@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const introTextRef = useRef(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -42,44 +43,59 @@ const About = () => {
       height: "100vh",
       borderRadius: 0,
     });
+
+    // Animate intro text
+    gsap.from(introTextRef.current, {
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: introTextRef.current,
+        start: "top bottom-=100",
+        toggleActions: "play none none reverse",
+      },
+    });
   });
 
   return (
     <div id="about" className="min-h-screen w-full">
-      <div className="relative mb-8 mt-36 flex flex-col items-center gap-5">
-        <p className="font-general text-sm uppercase md:text-[10px]">
-          Welcome to My Portfolio
-        </p>
-
-        <AnimatedTitle
-          title="Bri<b>d</b>ging the art <br /> a<b>n</b>d science <b>o</b>f web"
-          containerClass="mt-5 !text-black text-center"
-        />
-
-        <div className="about-subtext">
-          <p className="text-gray-800">
-            I am Ishan Misra, a dedicated undergraduate student at Manipal
-            Institute of Technology, Bangalore.
+      <div className={`${isMobile ? "hidden" : "block"}`}>
+        <div className="relative mb-0 mt-4 flex flex-col items-center gap-0.5 md:mb-8 md:mt-36 md:gap-5">
+          <p className="font-general text-sm uppercase md:text-[10px]">
+            Welcome to My Portfolio
           </p>
-          <p className="mt-4 text-gray-600">
-            My journey in web development began during high school, where I
-            focused on web architecture and security. This foundation has
-            evolved into specialized expertise, enabling me to build robust
-            solutions and create impactful digital experiences.
-          </p>
-        </div>
-      </div>
 
-      <div className="h-dvh w-full" id="clip">
-        <div className="mask-clip-path about-image">
-          <video
-            src={isMobile ? "videos/about-mobile.mp4" : "videos/about.mp4"}
-            alt="Background"
-            className="absolute left-0 top-0 size-full object-cover"
-            muted
-            autoPlay
-            loop
+          <AnimatedTitle
+            title="Bri<b>d</b>ging the art <br /> a<b>n</b>d science <b>o</b>f web"
+            containerClass="!mt-0 md:mt-5 !text-black text-center"
           />
+
+          <div className="about-subtext px-4 md:px-0" ref={introTextRef}>
+            <p className="text-base text-gray-800 md:text-base">
+              I am Ishan Misra, a dedicated undergraduate student at Manipal
+              Institute of Technology, Bangalore.
+            </p>
+            <p className="mt-0.5 md:mt-4 text-sm text-gray-600 md:text-base">
+              My journey in web development began during high school, where I
+              focused on web architecture and security. This foundation has
+              evolved into specialized expertise, enabling me to build robust
+              solutions and create impactful digital experiences.
+            </p>
+          </div>
+        </div>
+
+        <div className="h-[50vh] md:h-dvh w-full" id="clip">
+          <div className="mask-clip-path about-image">
+            <video
+              src="videos/about.mp4"
+              alt="Background"
+              className="absolute left-0 top-0 size-full object-cover"
+              muted
+              autoPlay
+              loop
+            />
+          </div>
         </div>
       </div>
     </div>
