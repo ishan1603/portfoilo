@@ -38,14 +38,14 @@ const About = () => {
     });
 
     clipAnimation.to(".mask-clip-path", {
-      width: "100vw",
+      width: "100%",
       height: "100vh",
       borderRadius: 0,
     });
   });
 
   return (
-    <div id="about" className="min-h-screen w-screen">
+    <div id="about" className="min-h-screen w-full">
       <div className="relative mb-8 mt-36 flex flex-col items-center gap-5">
         <p className="font-general text-sm uppercase md:text-[10px]">
           Welcome to My Portfolio
@@ -70,7 +70,7 @@ const About = () => {
         </div>
       </div>
 
-      <div className="h-dvh w-screen" id="clip">
+      <div className="h-dvh w-full" id="clip">
         <div className="mask-clip-path about-image">
           <video
             src={isMobile ? "videos/about-mobile.mp4" : "videos/about.mp4"}
