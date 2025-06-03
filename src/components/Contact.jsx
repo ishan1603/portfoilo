@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import AnimatedTitle from "./AnimatedTitle";
 import Button from "./Button";
 import EmailDialog from "./EmailDialog";
@@ -10,7 +10,7 @@ const Contact = () => {
     <div id="contact" className="my-20 min-h-96 w-screen px-10">
       <div className="relative rounded-lg overflow-hidden py-24 text-blue-50">
         <video
-          src="videos/hero-1.mp4"
+          src="videos/contact.mp4"
           className="absolute left-0 top-0 size-full object-cover"
           muted
           autoPlay
@@ -33,7 +33,10 @@ const Contact = () => {
           />
         </div>
       </div>
-      <EmailDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+      <EmailDialog
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+      />
     </div>
   );
 };

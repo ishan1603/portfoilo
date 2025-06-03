@@ -39,10 +39,15 @@ const About = () => {
         />
 
         <div className="about-subtext">
-          <p>Code flows where logic leads</p>
-          <p className="text-gray-500">
-            I architect bulletproof backends with Express & NextJs, then dress
-            them in React’s finest Tailwind threads.
+          <p className="text-gray-800">
+            I am Ishan Misra, a dedicated undergraduate student at Manipal
+            Institute of Technology, Bangalore.
+          </p>
+          <p className="mt-4 text-gray-600">
+            My journey in web development began during high school, where I
+            focused on web architecture and security. This foundation has
+            evolved into specialized expertise, enabling me to build robust
+            solutions and create impactful digital experiences.
           </p>
         </div>
       </div>
@@ -50,7 +55,7 @@ const About = () => {
       <div className="h-dvh w-screen" id="clip">
         <div className="mask-clip-path about-image">
           <video
-            src="videos/hero-1.mp4"
+            src="videos/about.mp4"
             alt="Background"
             className="absolute left-0 top-0 size-full object-cover"
             muted

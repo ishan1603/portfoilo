@@ -16,6 +16,22 @@ const techLinks = {
   Prisma: "https://www.prisma.io",
   PostgreSQL: "https://www.postgresql.org",
   "AWS S3": "https://aws.amazon.com/s3",
+  Zod: "https://zod.dev",
+  "Vapi AI": "https://vapi.ai",
+  Clerk: "https://clerk.com",
+  "React Router": "https://reactrouter.com",
+  "Context API": "https://react.dev/learn/passing-data-deeply-with-context",
+  Nodemon: "https://nodemon.io",
+  Nginx: "https://www.nginx.com",
+  Sentry: "https://sentry.io",
+  HTML5: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+  CSS3: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+  Git: "https://git-scm.com",
+  Docker: "https://www.docker.com",
+  Vercel: "https://vercel.com",
+  Netlify: "https://www.netlify.com",
+  "GitHub Actions": "https://github.com/features/actions",
+  Cloudinary: "https://cloudinary.com",
 };
 
 export const BentoTilt = ({ children, className = "" }) => {
@@ -63,6 +79,7 @@ export const BentoCard = ({
   websiteLink,
   sourceCodeLink,
   techStack = [],
+  isWIP = false,
 }) => {
   return (
     <div className="relative size-full">
@@ -83,17 +100,21 @@ export const BentoCard = ({
           )}
           {techStack.length > 0 && (
             <div className="mt-4 flex flex-wrap gap-2">
-              {techStack.map((tech, index) => (
-                <a
-                  key={index}
-                  href={techLinks[tech]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cursor-pointer rounded-full bg-black/20 px-3 py-1 text-xs text-white transition-all duration-300 hover:bg-black/40 hover:scale-110"
-                >
-                  {tech}
-                </a>
-              ))}
+              {techStack.map((tech, index) =>
+                tech === "|" ? (
+                  <div key={index} className="w-full" />
+                ) : (
+                  <a
+                    key={index}
+                    href={techLinks[tech]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer rounded-full bg-black/20 px-4 py-2 text-sm md:text-base text-white transition-all duration-300 hover:bg-black/40 hover:scale-110"
+                  >
+                    {tech}
+                  </a>
+                )
+              )}
             </div>
           )}
         </div>
@@ -101,24 +122,32 @@ export const BentoCard = ({
         <div className="flex gap-3">
           {websiteLink && (
             <a
-              href={websiteLink}
+              href={isWIP ? undefined : websiteLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 rounded-full bg-black/20 px-4 py-2 text-sm text-white transition-all hover:bg-black/40"
+              className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm text-white transition-all ${
+                isWIP
+                  ? "cursor-not-allowed bg-black/10"
+                  : "cursor-pointer bg-black/20 hover:bg-black/40"
+              }`}
             >
               <FaExternalLinkAlt />
-              <span>Website</span>
+              <span>{isWIP ? "WIP" : "Website"}</span>
             </a>
           )}
           {sourceCodeLink && (
             <a
-              href={sourceCodeLink}
+              href={isWIP ? undefined : sourceCodeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 rounded-full bg-black/20 px-4 py-2 text-sm text-white transition-all hover:bg-black/40"
+              className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm text-white transition-all ${
+                isWIP
+                  ? "cursor-not-allowed bg-black/10"
+                  : "cursor-pointer bg-black/20 hover:bg-black/40"
+              }`}
             >
               <FaGithub />
-              <span>Source</span>
+              <span>{isWIP ? "WIP" : "Source"}</span>
             </a>
           )}
         </div>
@@ -157,6 +186,10 @@ const Features = () => (
             "Stripe",
             "TypeScript",
             "Tailwind",
+            "|",
+            "Zod",
+            "Vapi AI",
+            "Clerk",
           ]}
         />
       </BentoTilt>
@@ -170,10 +203,11 @@ const Features = () => (
                 Ac<b>a</b>dBond
               </>
             }
-            description="A platform where professors can"
+            description="A collaborative platform connecting professors and students for research paper development. Features real-time collaboration, mentorship tracking, and seamless document sharing to streamline academic research workflows."
             websiteLink="https://acadbond.com"
             sourceCodeLink="https://github.com/ishan1603/AcadBond"
             techStack={["React", "Node.js", "MongoDB", "Express", "Socket.io"]}
+            isWIP={true}
           />
         </BentoTilt>
 
@@ -182,31 +216,35 @@ const Features = () => (
             src="videos/feature-3.mp4"
             title={
               <>
-                Twe<b>e</b>Vee
+                Ch<b>a</b>tApp
               </>
             }
-            description="TweeVee is a video-sharing platform that blends YouTube's depth with Twitter's reach, letting creators post full-length videos while optimizing them for social sharing."
+            description="A feature-rich real-time messaging platform with video and voice calling capabilities. Includes media sharing, user authentication, and real-time notifications. Built with modern web technologies for seamless communication."
             websiteLink="https://tweevee.vercel.app"
             sourceCodeLink="https://github.com/ishan1603/TweeVee"
             techStack={[
+              "React",
               "Next.js",
-              "Prisma",
-              "PostgreSQL",
-              "AWS S3",
               "Tailwind",
+              "Socket.io",
+              "Cloudinary",
+              "Supabase",
             ]}
+            isWIP={true}
           />
         </BentoTilt>
 
-        <BentoTilt className="bento-tilt_1 me-14 md:col-span-1 md:me-0">
+        <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1">
           <BentoCard
-            src="videos/feature-4.mp4"
+            src="videos/pixelart.mp4"
             title={
               <>
-                w<b>i</b>p
+                W<b>i</b>P
               </>
             }
-            description=""
+            description="A Web3 platform leveraging blockchain technology to revolutionize digital interactions. Coming soon with innovative features and decentralized solutions."
+            textColor="text-white"
+            isWIP={true}
           />
         </BentoTilt>
 

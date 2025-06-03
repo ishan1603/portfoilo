@@ -19,7 +19,7 @@ const socialLinks = [
     label: "LeetCode",
   },
   {
-    href: "#",
+    href: "/resume.pdf",
     icon: <TiDocumentText className="text-xl" />,
     label: "Resume",
   },
