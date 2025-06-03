@@ -1,27 +1,58 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
 const EmailDialog = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const mailtoLink = `mailto:ishanm1603@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`;
-    window.location.href = mailtoLink;
-    onClose();
+    setIsSubmitting(true);
+    setStatus({ type: "", message: "" });
+
+    try {
+      const response = await fetch("http://localhost:3001/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({ type: "success", message: "Message sent successfully!" });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => {
+          onClose();
+        }, 2000);
+      } else {
+        setStatus({
+          type: "error",
+          message: data.error || "Failed to send message",
+        });
+      }
+    } catch {
+      setStatus({
+        type: "error",
+        message: "Failed to send message. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -36,12 +67,29 @@ const EmailDialog = ({ isOpen, onClose }) => {
         >
           ✕
         </button>
-        
-        <h2 className="mb-6 text-2xl font-bold text-gray-800 font-pixelify-sans">Get in Touch</h2>
-        
+
+        <h2 className="mb-6 text-2xl font-bold text-gray-800 font-pixelify-sans">
+          Get in Touch
+        </h2>
+
+        {status.message && (
+          <div
+            className={`mb-4 rounded-md p-3 ${
+              status.type === "success"
+                ? "bg-green-100 text-green-700"
+                : "bg-red-100 text-red-700"
+            }`}
+          >
+            {status.message}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 font-general">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700 font-general"
+            >
               Name
             </label>
             <input
@@ -56,7 +104,10 @@ const EmailDialog = ({ isOpen, onClose }) => {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 font-general">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 font-general"
+            >
               Email
             </label>
             <input
@@ -71,7 +122,10 @@ const EmailDialog = ({ isOpen, onClose }) => {
           </div>
 
           <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-gray-700 font-general">
+            <label
+              htmlFor="subject"
+              className="block text-sm font-medium text-gray-700 font-general"
+            >
               Subject
             </label>
             <input
@@ -86,7 +140,10 @@ const EmailDialog = ({ isOpen, onClose }) => {
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 font-general">
+            <label
+              htmlFor="message"
+              className="block text-sm font-medium text-gray-700 font-general"
+            >
               Message
             </label>
             <textarea
@@ -102,10 +159,21 @@ const EmailDialog = ({ isOpen, onClose }) => {
 
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-md bg-blue-400 px-4 py-2 text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-general"
+            disabled={isSubmitting}
+            className={`flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-general ${
+              isSubmitting
+                ? "bg-blue-300 cursor-not-allowed"
+                : "bg-blue-400 hover:bg-blue-500"
+            }`}
           >
-            <TiLocationArrow />
-            Send Message
+            {isSubmitting ? (
+              "Sending..."
+            ) : (
+              <>
+                <TiLocationArrow />
+                Send Message
+              </>
+            )}
           </button>
         </form>
       </div>
@@ -113,4 +181,4 @@ const EmailDialog = ({ isOpen, onClose }) => {
   );
 };
 
-export default EmailDialog; 
+export default EmailDialog;
