@@ -91,15 +91,19 @@ export const BentoCard = ({
         className="absolute left-0 top-0 size-full object-cover object-center"
       />
       <div
-        className={`relative z-10 flex size-full flex-col justify-between p-5 ${textColor}`}
+        className={`relative z-10 flex size-full flex-col justify-between p-3 md:p-5 ${textColor}`}
       >
         <div>
-          <h1 className="bento-title font-pixelify-sans">{title}</h1>
+          <h1 className="bento-title font-pixelify-sans text-xl md:text-2xl lg:text-3xl">
+            {title}
+          </h1>
           {description && (
-            <p className="mt-3 max-w-64 text-xs md:text-base">{description}</p>
+            <p className="mt-2 md:mt-3 max-w-64 text-[10px] sm:text-xs md:text-sm lg:text-base">
+              {description}
+            </p>
           )}
           {techStack.length > 0 && (
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-2 md:mt-4 flex flex-wrap gap-1 md:gap-2">
               {techStack.map((tech, index) =>
                 tech === "|" ? (
                   <div key={index} className="w-full" />
@@ -109,7 +113,7 @@ export const BentoCard = ({
                     href={techLinks[tech]}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="cursor-pointer rounded-full bg-black/20 px-4 py-2 text-sm md:text-base text-white transition-all duration-300 hover:bg-black/40 hover:scale-110"
+                    className="cursor-pointer rounded-full bg-black/20 px-2 md:px-4 py-1 md:py-2 text-[10px] sm:text-xs md:text-sm lg:text-base text-white transition-all duration-300 hover:bg-black/40 hover:scale-110"
                   >
                     {tech}
                   </a>
@@ -119,19 +123,19 @@ export const BentoCard = ({
           )}
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3">
           {websiteLink && (
             <a
               href={isWIP ? undefined : websiteLink}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm text-white transition-all ${
+              className={`flex items-center gap-1 rounded-full px-2 md:px-4 py-1 md:py-2 text-[10px] sm:text-xs md:text-sm text-white transition-all ${
                 isWIP
                   ? "cursor-not-allowed bg-black/10"
                   : "cursor-pointer bg-black/20 hover:bg-black/40"
               }`}
             >
-              <FaExternalLinkAlt />
+              <FaExternalLinkAlt className="text-xs md:text-sm" />
               <span>{isWIP ? "WIP" : "Website"}</span>
             </a>
           )}
@@ -140,13 +144,13 @@ export const BentoCard = ({
               href={isWIP ? undefined : sourceCodeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm text-white transition-all ${
+              className={`flex items-center gap-1 rounded-full px-2 md:px-4 py-1 md:py-2 text-[10px] sm:text-xs md:text-sm text-white transition-all ${
                 isWIP
                   ? "cursor-not-allowed bg-black/10"
                   : "cursor-pointer bg-black/20 hover:bg-black/40"
               }`}
             >
-              <FaGithub />
+              <FaGithub className="text-xs md:text-sm" />
               <span>{isWIP ? "WIP" : "Source"}</span>
             </a>
           )}
