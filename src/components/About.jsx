@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 import AnimatedTitle from "./AnimatedTitle";
 
@@ -9,7 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const introTextRef = useRef(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -43,19 +42,6 @@ const About = () => {
       height: "100vh",
       borderRadius: 0,
     });
-
-    // Animate intro text
-    gsap.from(introTextRef.current, {
-      opacity: 0,
-      y: 20,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: introTextRef.current,
-        start: "top bottom-=100",
-        toggleActions: "play none none reverse",
-      },
-    });
   });
 
   return (
@@ -71,7 +57,7 @@ const About = () => {
             containerClass="!mt-0 md:mt-5 !text-black text-center"
           />
 
-          <div className="about-subtext px-4 md:px-0" ref={introTextRef}>
+          <div className="about-subtext px-4 md:px-0">
             <p className="text-base text-gray-800 md:text-base">
               I am Ishan Misra, a dedicated undergraduate student at Manipal
               Institute of Technology, Bangalore.
