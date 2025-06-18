@@ -1,5 +1,6 @@
 import { BentoTilt, BentoCard } from "./Features";
 import AnimatedTitle from "./AnimatedTitle";
+import { useEffect, useState } from "react";
 
 const techCategories = [
   {
@@ -55,6 +56,23 @@ const techCategories = [
 ];
 
 const Story = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <div id="skills" className="min-h-dvh w-screen bg-black text-blue-50">
       <div className="container mx-auto px-3 py-32 md:px-10">
@@ -63,10 +81,16 @@ const Story = () => {
             <p className="font-general text-sm uppercase md:text-[10px] mb-10">
               Skill-Set
             </p>
-            <AnimatedTitle
-              title="Technologies I <b>W</b>ork <br /> <b>W</b>ith"
-              containerClass="mt-5 font-pixelify-sans !text-5xl sm:!text-7xl md:!text-[12rem] w-full !font-black !leading-[.9]"
-            />
+            {isMobile ? (
+              <h1 className="mt-5 font-pixelify-sans !text-6xl sm:!text-5xl md:!text-[8rem] w-full !font-black !leading-[.9] text-center">
+                Tech Stack
+              </h1>
+            ) : (
+              <AnimatedTitle
+                title="Tech Stack"
+                containerClass="mt-5 font-pixelify-sans !text-3xl sm:!text-5xl md:!text-[8rem] w-full !font-black !leading-[.9]"
+              />
+            )}
             <p className="mt-3 max-w-md mx-auto text-center font-circular-web text-lg text-blue-50 opacity-50">
               A comprehensive toolkit for building modern web applications.
             </p>
